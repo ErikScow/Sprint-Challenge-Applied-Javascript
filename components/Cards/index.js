@@ -17,3 +17,39 @@
 // </div>
 //
 // Create a card for each of the articles and add the card to the DOM.
+
+const cardData = axios.get('https://lambda-times-backend.herokuapp.com/articles')
+console.log(cardData)
+
+const CardComponent = (dataParam) => {
+
+//create elements
+const cardDiv = document.createElement('div')
+const headline = document.createElement('div')
+const author = document.createElement('div')
+const imgCont = document.createElement('div')
+const image = document.createElement('img')
+const authorName = document.createElement('span')
+
+//nesting
+cardDiv.appendChild(headline)
+cardDiv.appendChild(author)
+author.appendChild(imgCont)
+author.appendChild(authorName)
+imgCont.appendChild(image)
+
+//classes
+cardDiv.classList.add('card')
+headline.classList.add('headline')
+author.classList.add('author')
+imgCont.classList.add('img-container')
+
+//content 
+headline.textContent = `${dataParam.headline}`
+image.src = `${dataParam.authorPhoto}`
+authorName.textContent = `By ${dataParam.authorName}`
+
+return cardDiv
+}
+
+
